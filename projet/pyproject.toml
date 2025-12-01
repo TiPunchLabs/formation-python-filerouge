@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "karukera-alertes"
+version = "0.1.0"
+description = "Système d'alertes et de prévention pour la Guadeloupe"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+    {name = "Formation Python Guadeloupe"}
+]
+keywords = ["guadeloupe", "alertes", "séismes", "cyclones", "prévention"]
+
+dependencies = [
+    "pydantic>=2.5",
+    "pydantic-settings>=2.1",
+    "httpx>=0.25",
+    "python-dateutil>=2.8",
+    "fastapi>=0.104",
+    "uvicorn[standard]>=0.24",
+    "streamlit>=1.28",
+    "folium>=0.15",
+    "streamlit-folium>=0.15",
+    "plotly>=5.18",
+    "typer[all]>=0.9",
+    "rich>=13.0",
+    "feedparser>=6.0",
+    "beautifulsoup4>=4.12",
+    "lxml>=4.9",
+    "aiosqlite>=0.19",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=4.1",
+    "respx>=0.20",
+    "ruff>=0.1",
+    "mypy>=1.7",
+    "pre-commit>=3.5",
+]
+
+[project.scripts]
+karukera = "karukera_alertes.cli.main:app"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
